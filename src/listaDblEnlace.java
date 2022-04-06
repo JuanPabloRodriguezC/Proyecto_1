@@ -7,6 +7,10 @@ public class listaDblEnlace {
         this.size = 0;
     }
 
+    public int size(){
+        return this.size;
+    }
+
     public void setHead(Node head) {
         this.head = head;
     }
@@ -14,6 +18,50 @@ public class listaDblEnlace {
     public Node getHead() {
         return head;
     }
+
+    public void insertFirst(Object data){
+        Node newNode = new Node(data);
+        if(this.head != null){
+            newNode.setNext(this.head);
+            this.head = newNode;
+            this.size++;
+        }else{
+            this.head = newNode;
+        }
+
+    }
+
+    public Node deleteFirst(){
+        if(this.head != null){
+            Node temp = this.head;
+            this.head = this.head.getNext();
+            this.size --;
+            return temp;
+        }else{
+            return null;
+        }
+    }
+
+    public void displayList() {
+        Node current = this.head;
+        while (current != null) {
+            System.out.println(current.getData());
+            current = current.getNext();
+        }
+    }
+
+    public Node find(Object searchValue) {
+        Node current = this.head;
+        while (current != null) {
+            if (current.getData().equals(searchValue)) {
+                return current;
+            } else {
+                current = current.getNext();
+            }
+        }
+        return null;
+    }
+
 
 
 }
