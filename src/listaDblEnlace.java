@@ -1,22 +1,29 @@
+import java.io.File;
+
 public class listaDblEnlace {
     private Node head;
     private int size;
 
+    //Constructor
     public listaDblEnlace(){
         this.head = null;
         this.size = 0;
     }
 
-    public int size(){
-        return this.size;
+    public Node getHead() {
+        return head;
+    }
+
+    public int getSize(){
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return this.head == null;
     }
 
     public void setHead(Node head) {
         this.head = head;
-    }
-
-    public Node getHead() {
-        return head;
     }
 
     public void insertFirst(Object data){
@@ -41,7 +48,7 @@ public class listaDblEnlace {
             return null;
         }
     }
-
+    //metodo de prueba para verificar que se guarde el path en el nodo
     public void displayList() {
         Node current = this.head;
         while (current != null) {
@@ -62,6 +69,12 @@ public class listaDblEnlace {
         return null;
     }
 
+    public listaDblEnlace addFiles(File[] files){
+        for(File file : files){
+            this.insertFirst(file);
+        }
+        return this;
+    }
 
 
 }

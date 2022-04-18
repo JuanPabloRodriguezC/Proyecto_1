@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 public class Interfaz extends JFrame{
     private JPanel panelPrincipal;
@@ -25,20 +26,20 @@ public class Interfaz extends JFrame{
         this.setContentPane(panelPrincipal);
         this.pack();
 
-        Image img = new ImageIcon("img/Farm animals/animal.png").getImage();
-        Card1.setIcon(new ImageIcon(img));
+        //Crea una lista  de doble enlace de Nodos tipo files
+        listaDblEnlace nLista = new listaDblEnlace();
+        File dir = new File("/Users/juanpablorodriguez/IdeaProjects/CE1103-Proyecto_1/img/Farm animals");
+        Matriz nuevaMatriz = new Matriz( 5, 2);
+        Node[][] matriz = nuevaMatriz.getMatrix(nLista.addFiles(dir.listFiles()));
 
-        Image img2 = new ImageIcon("img/Farm animals/chicken.png").getImage();
-        Card2.setIcon(new ImageIcon(img2));
 
-        Image img3 = new ImageIcon("img/Farm animals/cow.png").getImage();
-        Card3.setIcon(new ImageIcon(img3));
-
-        Image img4 = new ImageIcon("img/Farm animals/duck.png").getImage();
-        Card4.setIcon(new ImageIcon(img4));
-
-        Image img5 = new ImageIcon("img/Farm animals/farm.png").getImage();
-        Card5.setIcon(new ImageIcon(img5));
+        //Configura la imagen del label utilizando los files de la lista, convirtiendolos primero a Strings
+        Card1.setIcon(new ImageIcon(matriz[0][1].getData().toString()));
+        Card2.setIcon(new ImageIcon(matriz[1][0].getData().toString()));
+        Card3.setIcon(new ImageIcon(matriz[0][1].getData().toString()));
+        Card4.setIcon(new ImageIcon(matriz[0][0].getData().toString()));
+        Card5.setIcon(new ImageIcon(matriz[0][0].getData().toString()));
+        Card6.setIcon(new ImageIcon(matriz[0][0].getData().toString()));Card1.setIcon(new ImageIcon(matriz[0][0].getData().toString()));
 
 
 
@@ -48,8 +49,6 @@ public class Interfaz extends JFrame{
         //se crea el frame que contiene el panel del juego
         JFrame frame = new Interfaz("Juego de Memoria");
         frame.setVisible(true);
-
-
     }
 
 }
