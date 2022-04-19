@@ -29,20 +29,15 @@ public class listaDblEnlace {
         Node newNode = new Node(data);
         if (head == null) {
             head = tail = newNode;
-            //head's previous will be null
             head.previous = null;
-            //tail's next will be null
             tail.next = null;
         } else {
-            //add newNode to the end of list. tail->next set to newNode
             tail.next = newNode;
-            //newNode->previous set to tail
             newNode.previous = tail;
-            //newNode becomes new tail
             tail = newNode;
-            //tail's next point to null
             tail.next = null;
         }
+        this.size++;
     }
 
     public void insertFirst(Object data){
@@ -67,7 +62,7 @@ public class listaDblEnlace {
             return null;
         }
     }
-    //metodo de prueba para verificar que se guarde el path en el nodo
+    //metodo de prueba para verificar otros metodos
     public void displayList() {
         Node current = this.head;
         while (current != null) {
@@ -76,14 +71,13 @@ public class listaDblEnlace {
         }
     }
 
-    public listaDblEnlace duplicar(listaDblEnlace lista){
+    public void duplicar(listaDblEnlace lista){
         int size = lista.size;
         Node current = lista.getHead();
         for(int i =0; i<size;i++){
             lista.insertFirst(current.getData());
             current = current.getNext();
         }
-        return lista;
     }
 
     public Node find(Object searchValue) {
@@ -105,5 +99,41 @@ public class listaDblEnlace {
         return this;
     }
 
+    public void shuffle(){
+        for(int i = 0; i < this.getSize(); i++){
+            Node temp = this.head;
+            double random =  Math.random() * 10 + 1;
+
+            for(int x = 0; x < random; x++){
+                if(random > 0 && temp.getNext() != null) {
+                    temp = temp.getNext();
+                }
+            }
+
+            if(temp.getPrevious() != null){
+                temp.getPrevious().setNext(temp.getNext());
+            }
+
+            if(temp.getNext() != null){
+                temp.getNext().setPrevious(temp.getPrevious());
+            }
+
+            temp.setNext(this.head);
+            this.head.setPrevious(temp);
+            temp.setPrevious(null);
+
+            this.head = temp;
+        }
+    }
+
+    public static void main(String[] args){
+        listaDblEnlace nLista = new listaDblEnlace();
+        File dir = new File("/Users/juanpablorodriguez/IdeaProjects/CE1103-Proyecto_1/img/Rocketships");
+        nLista.addFiles(dir.listFiles());
+        nLista.displayList();
+        System.out.println("xxxxxx");
+        nLista.shuffle();
+        nLista.displayList();
+    }
 
 }

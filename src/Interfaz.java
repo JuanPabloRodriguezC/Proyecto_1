@@ -31,23 +31,34 @@ public class Interfaz extends JFrame implements MouseListener{
 
         //Crea una lista  de doble enlace de Nodos tipo files
         listaDblEnlace nLista = new listaDblEnlace();
-        File dir = new File("/Users/juanpablorodriguez/IdeaProjects/CE1103-Proyecto_1/img/Farm animals");
-        Matriz nuevaMatriz = new Matriz( 5, 2);
-        Node[][] matriz = nuevaMatriz.getMatrix(nLista.addFiles(dir.listFiles()));
+        File dir = new File("/Users/juanpablorodriguez/IdeaProjects/CE1103-Proyecto_1/img/Rocketships");
+        Matriz nuevaMatriz = new Matriz( 2, 5);
+        nLista.addFiles(dir.listFiles());
+        nLista.shuffle();
+        Node[][] matriz = nuevaMatriz.getMatrix(nLista);
 
 
         //Configura la imagen del label utilizando los files de la lista, convirtiendolos primero a Strings
-        Card1.setIcon(new ImageIcon(matriz[0][1].getData().toString()));
+        Card1.setIcon(new ImageIcon(matriz[0][0].getData().toString()));
         Card1.addMouseListener(this);
-        Card2.setIcon(new ImageIcon(matriz[1][0].getData().toString()));
+        Card2.setIcon(new ImageIcon(matriz[0][1].getData().toString()));
         Card2.addMouseListener(this);
-        Card3.setIcon(new ImageIcon(matriz[0][1].getData().toString()));
+        Card3.setIcon(new ImageIcon(matriz[0][2].getData().toString()));
         Card3.addMouseListener(this);
-        Card4.setIcon(new ImageIcon(matriz[2][0].getData().toString()));
+        Card4.setIcon(new ImageIcon(matriz[0][3].getData().toString()));
         Card4.addMouseListener(this);
-        Card5.setIcon(new ImageIcon(matriz[2][1].getData().toString()));
+        Card5.setIcon(new ImageIcon(matriz[0][4].getData().toString()));
         Card5.addMouseListener(this);
-        Card6.setIcon(new ImageIcon(matriz[0][0].getData().toString()));
+        Card6.setIcon(new ImageIcon(matriz[1][0].getData().toString()));
+        Card6.addMouseListener(this);
+        Card7.setIcon(new ImageIcon(matriz[1][1].getData().toString()));
+        Card7.addMouseListener(this);
+        Card8.setIcon(new ImageIcon(matriz[1][2].getData().toString()));
+        Card8.addMouseListener(this);
+        Card9.setIcon(new ImageIcon(matriz[1][3].getData().toString()));
+        Card9.addMouseListener(this);
+        Card10.setIcon(new ImageIcon(matriz[1][4].getData().toString()));
+        Card10.addMouseListener(this);
 
     }
 
@@ -57,6 +68,7 @@ public class Interfaz extends JFrame implements MouseListener{
         //se crea el frame que contiene el panel del juego
         JFrame frame = new Interfaz("Juego de Memoria");
         frame.setVisible(true);
+        System.out.print(Math.random());
     }
 
     @Override
