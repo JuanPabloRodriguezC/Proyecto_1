@@ -1,8 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 
-public class Interfaz extends JFrame{
+public class Interfaz extends JFrame implements MouseListener{
     private JPanel panelPrincipal;
     private JLabel Card1;
     private JLabel Card2;
@@ -35,15 +38,20 @@ public class Interfaz extends JFrame{
 
         //Configura la imagen del label utilizando los files de la lista, convirtiendolos primero a Strings
         Card1.setIcon(new ImageIcon(matriz[0][1].getData().toString()));
+        Card1.addMouseListener(this);
         Card2.setIcon(new ImageIcon(matriz[1][0].getData().toString()));
+        Card2.addMouseListener(this);
         Card3.setIcon(new ImageIcon(matriz[0][1].getData().toString()));
-        Card4.setIcon(new ImageIcon(matriz[0][0].getData().toString()));
-        Card5.setIcon(new ImageIcon(matriz[0][0].getData().toString()));
-        Card6.setIcon(new ImageIcon(matriz[0][0].getData().toString()));Card1.setIcon(new ImageIcon(matriz[0][0].getData().toString()));
-
-
+        Card3.addMouseListener(this);
+        Card4.setIcon(new ImageIcon(matriz[2][0].getData().toString()));
+        Card4.addMouseListener(this);
+        Card5.setIcon(new ImageIcon(matriz[2][1].getData().toString()));
+        Card5.addMouseListener(this);
+        Card6.setIcon(new ImageIcon(matriz[0][0].getData().toString()));
 
     }
+
+
 
     public static void main(String[] args){
         //se crea el frame que contiene el panel del juego
@@ -51,4 +59,30 @@ public class Interfaz extends JFrame{
         frame.setVisible(true);
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        JLabel label = (JLabel) e.getSource();
+        System.out.print("Mouse was clicked");
+        label.setIcon(new ImageIcon("/Users/juanpablorodriguez/IdeaProjects/CE1103-Proyecto_1/img/doubts-button.png"));
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 }
