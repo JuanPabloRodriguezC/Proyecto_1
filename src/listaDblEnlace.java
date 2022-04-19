@@ -2,11 +2,13 @@ import java.io.File;
 
 public class listaDblEnlace {
     private Node head;
+    private Node tail;
     private int size;
 
     //Constructor
     public listaDblEnlace(){
         this.head = null;
+        this.tail = null;
         this.size = 0;
     }
 
@@ -22,8 +24,25 @@ public class listaDblEnlace {
         return this.head == null;
     }
 
-    public void setHead(Node head) {
-        this.head = head;
+
+    public void addNode(Object data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = tail = newNode;
+            //head's previous will be null
+            head.previous = null;
+            //tail's next will be null
+            tail.next = null;
+        } else {
+            //add newNode to the end of list. tail->next set to newNode
+            tail.next = newNode;
+            //newNode->previous set to tail
+            newNode.previous = tail;
+            //newNode becomes new tail
+            tail = newNode;
+            //tail's next point to null
+            tail.next = null;
+        }
     }
 
     public void insertFirst(Object data){
@@ -57,6 +76,16 @@ public class listaDblEnlace {
         }
     }
 
+    public listaDblEnlace duplicar(listaDblEnlace lista){
+        int size = lista.size;
+        Node current = lista.getHead();
+        for(int i =0; i<size;i++){
+            lista.insertFirst(current.getData());
+            current = current.getNext();
+        }
+        return lista;
+    }
+
     public Node find(Object searchValue) {
         Node current = this.head;
         while (current != null) {
@@ -71,7 +100,7 @@ public class listaDblEnlace {
 
     public listaDblEnlace addFiles(File[] files){
         for(File file : files){
-            this.insertFirst(file);
+            this.addNode(file);
         }
         return this;
     }
