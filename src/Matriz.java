@@ -3,30 +3,23 @@ import java.awt.*;
 import java.io.File;
 
 public class Matriz {
+    private int rows;
+    private int columns;
+    public Matriz(int rows, int columns){
+        this.rows = rows;
+        this.columns = columns;
 
-    public listaDblEnlace addFiles(File[] files){
-        listaDblEnlace listaImagenes = new listaDblEnlace();
-        for(File file : files){
-            listaImagenes.insertFirst(file);
-        }
-        return listaImagenes;
     }
-
-    public Matriz(listaDblEnlace lista, int rows, int columns){
+    public Node[][] getMatrix(listaDblEnlace lista) {
 
         Node current = lista.getHead();
-
         Node[][] matrix = new Node[rows][columns];
-
-        for(int i = 0; i < rows; i++){
-            for(int j = 0; j< columns; j++){
-                if((i & j) == 0){
-                    matrix[i][j] = current;
-                }else{
-                    matrix[i][j] = current.getNext();
-                    current = current.getNext();
-                }
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                matrix[i][j] = current;
+                current = current.getNext();
             }
         }
+        return matrix;
     }
 }
