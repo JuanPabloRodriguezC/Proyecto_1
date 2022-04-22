@@ -29,13 +29,13 @@ public class listaDblEnlace {
         Node newNode = new Node(data);
         if (head == null) {
             head = tail = newNode;
-            head.previous = null;
-            tail.next = null;
+            head.setPrevious(null);
+            tail.setNext(null);
         } else {
-            tail.next = newNode;
-            newNode.previous = tail;
+            tail.setNext(newNode);
+            newNode.setPrevious(tail);
             tail = newNode;
-            tail.next = null;
+            tail.setNext(null);
         }
         this.size++;
     }
@@ -56,6 +56,7 @@ public class listaDblEnlace {
         if(this.head != null){
             Node temp = this.head;
             this.head = this.head.getNext();
+            this.head.setPrevious(null);
             this.size --;
             return temp;
         }else{
@@ -71,12 +72,13 @@ public class listaDblEnlace {
         }
     }
 
-    public void duplicar(listaDblEnlace lista){
-        int size = lista.size;
-        Node current = lista.getHead();
+    public void duplicar(){
+        int size = this.size;
+        Node current = this.getHead();
         for(int i =0; i<size;i++){
-            lista.insertFirst(current.getData());
+            this.addNode(current.getData());
             current = current.getNext();
+
         }
     }
 
@@ -126,14 +128,27 @@ public class listaDblEnlace {
         }
     }
 
+    public void cardStage(){
+        this.shuffle();
+        this.deleteFirst();
+        this.deleteFirst();
+        this.deleteFirst();
+        this.deleteFirst();
+        this.duplicar();
+        this.displayList();
+        this.shuffle();
+
+    }
+
     public static void main(String[] args){
         listaDblEnlace nLista = new listaDblEnlace();
         File dir = new File("/Users/juanpablorodriguez/IdeaProjects/CE1103-Proyecto_1/img/Rocketships");
         nLista.addFiles(dir.listFiles());
         nLista.displayList();
-        System.out.println("xxxxxx");
-        nLista.shuffle();
-        nLista.displayList();
+        System.out.println(nLista.getSize());
+        nLista.cardStage();
+        System.out.println(nLista.getSize());
+
     }
 
 }
